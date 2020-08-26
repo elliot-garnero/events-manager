@@ -19,6 +19,7 @@ export class Friend {
 })
 export class AppComponent implements OnInit {
   title = 'projetevents';
+  searchText;
   friends: Friend[];
   constructor(
     private httpClient: HttpClient
