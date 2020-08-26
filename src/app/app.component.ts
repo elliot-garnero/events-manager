@@ -4,11 +4,10 @@ import { Component, OnInit } from '@angular/core';
 export class Friend {
   constructor(
     public id: number,
-    public firstname: string,
-    public lastname: string,
-    public department: string,
+    public name: string,
+    public username: string,
     public email: string,
-    public country: string
+    public address: string,
   ) {
   }
 }
@@ -30,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   getFriends(){
-    this.httpClient.get<any>('http://localhost/users.json').subscribe(
+    this.httpClient.get<any>('https://jsonplaceholder.typicode.com/users').subscribe(
       response => {
         console.log(response);
         this.friends = response;
