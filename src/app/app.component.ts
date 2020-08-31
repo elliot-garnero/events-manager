@@ -7,34 +7,25 @@ export class Friend {
     public name: string,
     public username: string,
     public email: string,
-    public address: string,
-  ) {
-  }
+    public address: string
+  ) {}
 }
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'projetevents';
-  searchText;
   friends: Friend[];
-  constructor(
-    private httpClient: HttpClient
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit(): void {
-    this.getFriends();
-  }
-
-  getFriends(){
-    this.httpClient.get<any>('https://jsonplaceholder.typicode.com/users').subscribe(
-      response => {
-        console.log(response);
+    this.httpClient
+      .get<any>('https://jsonplaceholder.typicode.com/users')
+      .subscribe((response) => {
         this.friends = response;
-      }
-    );
+      });
   }
 }
