@@ -1,9 +1,75 @@
-<div>
-  <div class="search-hero">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText">
+<header>
+  <h1 class="logo">My Events</h1>
+  <ul class="nav">
+    <li class="navlink"><a href="#">Home</a></li>
+    <li class="navlink"><a href="#">Events</a></li>
+    <li class="navlink"><a href="#">Profile</a></li>
+    <li class="navlink">
+      <i
+        class="fab fa-facebook-square fa-lg loginBtn loginBtn--facebook"
+        (click)="login()"
+      ></i>
+    </li>
+  </ul>
+</header>
+<main>
+  <h2 class="center">Nos derniers événements</h2>
+  <div *ngFor="let event of events | filter: searchText">
+    <article class="card">
+      <div class="card__left">
+        <div class="card__image">
+          <a href="{{ event.url }}">
+            <img
+              src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+              alt="Event image"
+          /></a>
+        </div>
+      </div>
+      <div class="card__right">
+        <div class="card__sale-flag">Respect des distanciations sociales</div>
+        <h2 class="card__name">{{ event.title || 'unknown' }}</h2>
+        <div class="card__address">{{ event.venue_address || 'unknown' }}</div>
+        <div class="card__address">{{ event.city_name || 'unknown' }}</div>
+        <p class="card__info">
+          {{ event.description || 'No description of the event' }}
+        </p>
+        <a href="{{ event.url }}"
+          ><button class="card__cta">Voir événement</button></a
+        >
+      </div>
+    </article>
   </div>
-    <table>
-      <thead>
+</main>
+<footer>
+  <h3 class="logo">Les boss du game</h3>
+  <ul class="nav">
+    <li class="navlink"><a href="#">Contact</a></li>
+  </ul>
+</footer>
+
+<!-- <div>
+  <h2>Facebook Login</h2>
+  <div>
+    <div>
+      <button class="loginBtn loginBtn--facebook" (click)="login()">
+        Login with Facebook
+      </button>
+    </div>
+  </div>
+</div> 
+
+<div>
+  <br />
+  <div class="search-hero">
+    <input
+      class="form-control"
+      type="text"
+      name="search"
+      [(ngModel)]="searchText"
+    />
+  </div>
+  <table>
+    <thead>
       <tr>
         <th>ID</th>
         <th>Nom</th>
@@ -12,16 +78,63 @@
         <th>Adresse</th>
         <th>Tél</th>
       </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let friend of friends | filter:searchText">
-        <td><span>{{friend.id}}</span></td>
-        <td><span>{{friend.name}}</span></td>
-        <td><span>{{friend.username}}</span></td>
-        <td><span>{{friend.email}}</span></td>
-        <td><span>{{friend.address.street}}</span></td>
-        <td><span>{{friend.phone}}</span></td>
+    </thead>
+    <tbody>
+      <tr *ngFor="let friend of friends | filter: searchText">
+        <td>
+          <span>{{ friend.id }}</span>
+        </td>
+        <td>
+          <span>{{ friend.name }}</span>
+        </td>
+        <td>
+          <span>{{ friend.username }}</span>
+        </td>
+        <td>
+          <span>{{ friend.email }}</span>
+        </td>
+        <td>
+          <span>{{ friend.address.street }}</span>
+        </td>
+        <td>
+          <span>{{ friend.phone }}</span>
+        </td>
       </tr>
-      </tbody>
-    </table>
-  </div>
+    </tbody>
+  </table>
+</div> -->
+
+<!-- <div class="search-hero">
+  <input
+  class="form-control"
+  type="text"
+  name="search"
+  [(ngModel)]="searchText"
+  />
+</div> -->
+<!-- <table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Adresse</th>
+      <th>Ville</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events | filter: searchText">
+      <td>
+        <span>{{ event.id || 'unknown' }}</span>
+      </td>
+      <td>
+        <span>{{ event.title || 'unknown' }}</span>
+      </td>
+      <td>
+        <span>{{ event.venue_address || 'unknown' }}</span>
+      </td>
+      <td>
+        <span>{{ event.city_name || 'unknown' }}</span>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
