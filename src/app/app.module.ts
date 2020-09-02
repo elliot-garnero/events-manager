@@ -7,10 +7,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
+import { EventsComponent } from './events/events.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
