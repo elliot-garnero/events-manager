@@ -1,18 +1,45 @@
-<header>
-  <h1 class="logo">My Events</h1>
-  <ul class="nav">
-    <li class="navlink"><a href="#">Home</a></li>
-    <li class="navlink"><a href="#">Events</a></li>
-    <li class="navlink"><a href="#">Profile</a></li>
-    <li class="navlink">
-      <i
-        class="fab fa-facebook-square fa-lg loginBtn loginBtn--facebook"
-        (click)="login()"
-      ></i>
-    </li>
-  </ul>
-</header>
+<div *ngIf="loggedIn===false">
+  <header>
+    <h1 class="logo">My Events</h1>
+    <ul class="nav">
+      <li class="navlink"><a href="#">Home</a></li>
+      <li class="navlink"><a href="#">Events</a></li>
+      <li class="navlink">
+        <i
+          class="fab fa-facebook-square fa-lg loginBtn loginBtn--facebook"
+          (click)="signInWithFB()"
+        ></i>
+      </li>
+    </ul>
+  </header>
+</div>
+
+<div *ngIf="loggedIn===true">
+  <header>
+    <h1 class="logo">My Events</h1>
+    <ul class="nav">
+      <li class="navlink"><a href="#">Home</a></li>
+      <li class="navlink"><a href="#">Events</a></li>
+      <li class="navlink"><a href="#">Profile</a></li>
+    </ul>
+  </header>
+</div>
 <main>
+  <div *ngIf="loggedIn===true" class="container">
+    <form id="contact" action="">
+      <h3>User information</h3>
+      <fieldset>
+        <input type="text" class="form-control" id="firstname" [value]="user.firstName" readonly >
+      </fieldset>
+      <fieldset>
+        <input type="text" class="form-control" id="lastname" [value]="user.lastName" readonly >
+      </fieldset>
+      <fieldset>
+        <input type="text" class="form-control" id="email2" [value]="user.email" readonly >
+      </fieldset>
+	      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" (click)="signOut()">Sign Out</button>
+    </form>
+   </div>
   <h2 class="center">Nos derniers événements</h2>
   <div *ngFor="let event of events | filter: searchText">
     <article class="card">
@@ -42,99 +69,4 @@
 </main>
 <footer>
   <h3 class="logo">Les boss du game</h3>
-  <ul class="nav">
-    <li class="navlink"><a href="#">Contact</a></li>
-  </ul>
 </footer>
-
-<!-- <div>
-  <h2>Facebook Login</h2>
-  <div>
-    <div>
-      <button class="loginBtn loginBtn--facebook" (click)="login()">
-        Login with Facebook
-      </button>
-    </div>
-  </div>
-</div> 
-
-<div>
-  <br />
-  <div class="search-hero">
-    <input
-      class="form-control"
-      type="text"
-      name="search"
-      [(ngModel)]="searchText"
-    />
-  </div>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Nom d'utilisateur</th>
-        <th>Email</th>
-        <th>Adresse</th>
-        <th>Tél</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let friend of friends | filter: searchText">
-        <td>
-          <span>{{ friend.id }}</span>
-        </td>
-        <td>
-          <span>{{ friend.name }}</span>
-        </td>
-        <td>
-          <span>{{ friend.username }}</span>
-        </td>
-        <td>
-          <span>{{ friend.email }}</span>
-        </td>
-        <td>
-          <span>{{ friend.address.street }}</span>
-        </td>
-        <td>
-          <span>{{ friend.phone }}</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
-<!-- <div class="search-hero">
-  <input
-  class="form-control"
-  type="text"
-  name="search"
-  [(ngModel)]="searchText"
-  />
-</div> -->
-<!-- <table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nom</th>
-      <th>Adresse</th>
-      <th>Ville</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let event of events | filter: searchText">
-      <td>
-        <span>{{ event.id || 'unknown' }}</span>
-      </td>
-      <td>
-        <span>{{ event.title || 'unknown' }}</span>
-      </td>
-      <td>
-        <span>{{ event.venue_address || 'unknown' }}</span>
-      </td>
-      <td>
-        <span>{{ event.city_name || 'unknown' }}</span>
-      </td>
-    </tr>
-  </tbody>
-</table> -->

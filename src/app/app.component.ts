@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
 
 export class Friend {
   // constructor(
@@ -25,12 +27,33 @@ export class AppComponent implements OnInit {
   searchText;
   friends: Friend[];
   events: Event[];
-  constructor(private httpClient: HttpClient) {}
+  signinForm: FormGroup;
+  user: SocialUser;
+  loggedIn: boolean;
+  constructor(private fb: FormBuilder, private authService: AuthService, private httpClient: HttpClient) {}
 
   ngOnInit(): void {
+    this.signinForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(this.user);
+    });
+
     this.getFriends();
     this.getEvents();
     this.fbLibrary();
+  }
+  
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+  signOut(): void {
+    this.authService.signOut();
   }
 
   getFriends() {
