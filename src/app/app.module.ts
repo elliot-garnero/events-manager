@@ -7,6 +7,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
+import { EventsComponent } from './events/events.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
 
 const config = new AuthServiceConfig([
   {
@@ -20,9 +22,12 @@ export function provideConfig()
   return config;
 }
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EventsComponent,
+    AuthentificationComponent
   ],
   imports: [
     BrowserModule,

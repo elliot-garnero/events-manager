@@ -1,0 +1,38 @@
+<h2 class="center">Nos derniers événements</h2>
+
+<div class="search-hero">
+  <input
+    class="form-control"
+    type="text"
+    name="search"
+    [(ngModel)]="searchText"
+  />
+</div>
+
+<div *ngFor="let event of events | filter: searchText">
+  <article class="card">
+    <div class="card__left">
+      <div class="card__image">
+        <a href="{{ event.url }}">
+          <img
+            src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+            alt="Event image"
+        /></a>
+      </div>
+    </div>
+    <div class="card__right">
+      <div class="card__sale-flag">Respect des distanciations sociales</div>
+      <h2 class="card__name">{{ event.title || 'unknown' }}</h2>
+      <div class="card__address">
+        {{ event.venue_address || 'unknown' }}
+      </div>
+      <div class="card__address">{{ event.city_name || 'unknown' }}</div>
+      <p class="card__info">
+        {{ event.description || 'No description of the event' }}
+      </p>
+      <a href="{{ event.url }}"
+        ><button class="card__cta">Voir événement</button></a
+      >
+    </div>
+  </article>
+</div>
