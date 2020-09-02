@@ -1,4 +1,14 @@
 <h2 class="center">Nos derniers événements</h2>
+
+<div class="search-hero">
+  <input
+    class="form-control"
+    type="text"
+    name="search"
+    [(ngModel)]="searchText"
+  />
+</div>
+
 <div *ngFor="let event of events | filter: searchText">
   <article class="card">
     <div class="card__left">
