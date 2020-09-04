@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
     });
 
     this.getFriends();
-    this.getEvents();
+    //this.getEvents();
     this.fbLibrary();
   }
   
@@ -55,24 +55,13 @@ export class AppComponent implements OnInit {
   signOut(): void {
     this.authService.signOut();
   }
-
+  
   getFriends() {
     this.httpClient
       .get<any>('https://jsonplaceholder.typicode.com/users')
       .subscribe((response) => {
         console.log(response);
         this.friends = response;
-      });
-  }
-
-  getEvents() {
-    this.httpClient
-      .get<any>(
-        'http://api.eventful.com/json/events/search?app_key=M95mQqmTbktTWS9b&location=paris&date=Future&page_size=20&sort_order=date'
-      )
-      .subscribe((response) => {
-        console.log(response.events.event);
-        this.events = response.events.event;
       });
   }
 

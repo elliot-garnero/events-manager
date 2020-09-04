@@ -1,19 +1,55 @@
 <h2 class="center">Nos derniers événements</h2>
 
-<div class="search-hero">
-  <input
-    class="form-control"
-    type="text"
-    name="search"
-    [(ngModel)]="searchText"
-  />
+<div class="card filters">
+  <div class="search-hero card-input">
+    <label for="search">Search </label>
+    <input
+      class="form-control"
+      type="text"
+      name="search"
+      [(ngModel)]="searchText"
+    />
+  </div>
+
+  <div class="search-hero card-input">
+    <label for="lieu">Lieu </label>
+    <input
+      class="form-control"
+      type="text"
+      name="lieu"
+      [(ngModel)]="range"
+      (ngModelChange)="saverange($event)"
+    />
+  </div>
+
+  <div class="search-hero card-input">
+    <label for="type">Type </label>
+    <select
+      name="type"
+      class="form-control"
+      (change)="onChange($event.target.value)"
+    >
+      <option value="concerts">Concerts</option>
+      <option value="festivals">Festivals</option>
+      <option value="comedy">Comedy</option>
+      <option value="family">Family</option>
+      <option value="nightlife">Nightlife</option>
+      <option value="performing-arts">Performing Arts</option>
+      <option value="sports">Sports</option>
+      <option value="food">Food</option>
+    </select>
+  </div>
 </div>
 
 <div *ngFor="let event of events | filter: searchText">
   <article class="card">
     <div class="card__left">
       <div class="card__image">
-        <a href="{{ event.url }}">
+        <a
+          href="{{
+            'event/?search=' + event.title + '&location=' + event.city_name
+          }}"
+        >
           <img
             src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
             alt="Event image"
@@ -27,10 +63,12 @@
         {{ event.venue_address || 'unknown' }}
       </div>
       <div class="card__address">{{ event.city_name || 'unknown' }}</div>
-      <p class="card__info">
-        {{ event.description || 'No description of the event' }}
-      </p>
-      <a href="{{ event.url }}"
+      <br /><br />
+      <!-- <p class="card__info" [innerHTML]="event.description"></p> -->
+      <a
+        href="{{
+          'event/?search=' + event.title + '&location=' + event.city_name
+        }}"
         ><button class="card__cta">Voir événement</button></a
       >
     </div>
