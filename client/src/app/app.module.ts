@@ -1,12 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  FacebookLoginProvider,
+} from 'angularx-social-login';
 import { EventsComponent } from './events/events.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { Friend } from './app.component';
@@ -17,15 +22,13 @@ import { UsersComponent } from './users/users.component';
 const config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('436417747304974')
-  }
+    provider: new FacebookLoginProvider('436417747304974'),
+  },
 ]);
 
-export function provideConfig() 
-{
+export function provideConfig() {
   return config;
 }
-
 
 @NgModule({
   declarations: [
@@ -33,10 +36,11 @@ export function provideConfig()
     EventsComponent,
     AuthentificationComponent,
     ChatComponent,
-    UsersComponent
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -48,9 +52,9 @@ export function provideConfig()
     WebSocketService,
     {
       provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
+      useFactory: provideConfig,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -20,8 +20,6 @@ export class EventDetailsComponent implements OnInit {
       this.eventLocation = params['location'];
       this.eventSearch = params['search'];
     });
-    console.log(this.eventLocation);
-    console.log(this.eventSearch);
     this.getEvent();
   }
 
@@ -34,9 +32,12 @@ export class EventDetailsComponent implements OnInit {
           this.eventLocation
       )
       .subscribe((response) => {
-        this.Events = response.events.event;
+        if (typeof response == 'object') {
+          this.Events = [response.events.event[0]];
+        } else {
+          this.Events = response.events.event[0];
+        }
         console.log(this.Events);
       });
-      
   }
 }

@@ -1,38 +1,33 @@
-
-
+<h2>
+  Voici le(s) événement(s) {{ eventSearch }} situé(s) à {{ eventLocation }}
+</h2>
 <div>
-  <h2>
-    Voici le(s) événement(s) {{ eventSearch }} situé(s) à {{ eventLocation }}
-  </h2>
-    <div *ngFor="let event of Events">
-    <p>{{ event.title}}</p>
-    <article class="card">
-      <div class="card__left">
-        <div class="card__image">
-          <img
-            src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-            alt="Event image"
-          />
-        </div>
+  <article class="card">
+    <div class="card__left">
+      <div class="card__image">
+        <img
+          src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+          alt="Concert image"
+        />
       </div>
-      <div class="card__right">
-        <div class="card__sale-flag">Respect des distanciations sociales</div>
-        <h2 class="card__name">{{ event.title || 'unknown' }}</h2>
-        <div class="card__address">
-          {{ event.venue_name || 'unknown' }}
-        </div>
-        <div class="card__address">
-          {{ event.venue_address || 'unknown' }}
-        </div>
-        <div class="card__address">
-          {{ event.city_name || 'unknown' }}
-          {{ event.postal_code || 'No postcode' }}
-        </div>
-        <p class="card__info">
-          {{ 'Le ' + event.created || 'No date' }}
-        </p>
-        <p class="card__info" [innerHTML]="event.description"></p>
+    </div>
+    <div class="card__right">
+      <div class="card__sale-flag">Respect des distanciations sociales</div>
+      <h2 class="card__name">{{ Events[0].title || 'unknown' }}</h2>
+      <div class="card__address">
+        {{ Events[0].venue_name || 'unknown' }}
       </div>
-    </article>
-  </div>
+      <div class="card__address">
+        {{ Events[0].venue_address || 'unknown' }}
+      </div>
+      <div class="card__address">
+        {{ Events[0].city_name || 'unknown' }}
+        {{ Events[0].postal_code || 'No postcode' }}
+      </div>
+      <p class="card__info">
+        {{ 'Le ' + Events[0].created || 'No date' }}
+      </p>
+      <p class="card__info" [innerHTML]="Events[0].description"></p>
+    </div>
+  </article>
 </div>
