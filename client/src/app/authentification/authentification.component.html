@@ -1,0 +1,19 @@
+  <div *ngIf="loggedIn===true" class="container">
+    <form id="contact">
+      <h3>User information</h3>
+      <img class="profile" [src]="user.photoUrl">
+      <fieldset>
+        <input type="text" class="form-control" id="firstname" [value]="user.firstName" readonly >
+      </fieldset>
+      <fieldset>
+        <input type="text" class="form-control" id="lastname" [value]="user.lastName" readonly >
+      </fieldset>
+      <fieldset>
+        <input type="text" class="form-control" id="email2" [value]="user.email" readonly >
+      </fieldset>
+      <fieldset>
+        <textarea tabindex="5" required></textarea>
+      </fieldset>
+	      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" (click)="signOut()">Sign Out</button>
+    </form>
+   </div>

@@ -1,0 +1,33 @@
+<div *ngIf="loggedIn===false">
+  <header>
+    <h1 class="logo">My Events</h1>
+    <ul class="nav">
+      <li class="navlink"><a href="#">Home</a></li>
+      <li class="navlink"><a routerLink="events">Events</a></li>
+      <li class="navlink"><a routerLink="users">Users</a></li>
+      <li class="navlink">
+        <i
+          class="fab fa-facebook-square fa-lg loginBtn loginBtn--facebook"
+          (click)="signInWithFB()"
+        ></i>
+      </li>
+    </ul>
+  </header>
+</div>
+
+<div *ngIf="loggedIn===true">
+  <header>
+    <h1 class="logo">My Events</h1>
+    <ul class="nav">
+      <li class="navlink"><a href="#">Home</a></li>
+      <li class="navlink"><a routerLink="events">Events</a></li>
+      <li class="navlink"><a routerLink="chat">Chat</a></li>
+      <li class="navlink"><a routerLink="users">Users</a></li>
+      <li class="navlink"><a routerLink="profile">Profile</a></li>
+    </ul>
+  </header>
+</div>
+  <router-outlet></router-outlet>
+<footer>
+  <h3 class="logo">Les boss du game</h3>
+</footer>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="search-hero">
+        <input
+          class="form-control"
+          type="text"
+          name="search"
+          [(ngModel)]="searchText"
+        />
+    </div>
+    <div class="container" *ngFor="let mydata of data[0] | filter: searchText">
+      <div class="shape">
+          <div class="image"></div>
+      </div>
+      <h2>{{mydata.username}}</h2>
+      <h4>{{mydata.firstname}}  {{mydata.lastname}} </h4>
+      <h3 class="title">{{mydata.email}}</h3>
+      <p>{{mydata.bio}} </p>
+    </div>
+</body>
+</html>
