@@ -1,5 +1,5 @@
-  <div *ngIf="loggedIn===true" class="container">
-    <form id="contact">
+<div *ngIf="loggedIn===true" class="container">
+  <form id="contact" #frm="ngForm" (ngSubmit)="saveapi(frm.value)">
       <h3>User information</h3>
       <img class="profile" [src]="user.photoUrl">
       <fieldset>
@@ -9,11 +9,18 @@
         <input type="text" class="form-control" id="lastname" [value]="user.lastName" readonly >
       </fieldset>
       <fieldset>
+        <input type="text" class="form-control" name="username" ngModel value="{{username}}">
+      </fieldset>
+      <fieldset>
         <input type="text" class="form-control" id="email2" [value]="user.email" readonly >
       </fieldset>
       <fieldset>
-        <textarea tabindex="5" required></textarea>
+        <textarea ngModel type="textarea" name="bio" tabindex="5" required>{{bio}}</textarea>
       </fieldset>
+        <button name="save" type="submit" id="contact-submit">Update</button>
 	      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" (click)="signOut()">Sign Out</button>
-    </form>
-   </div>
+  </form>
+</div>
+
+<h1>{{username}}</h1>
+<h1>{{bio}}</h1>

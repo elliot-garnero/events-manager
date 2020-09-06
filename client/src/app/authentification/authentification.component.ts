@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-authentification',
@@ -15,7 +16,22 @@ export class AuthentificationComponent implements OnInit {
   signinForm: FormGroup;
   user: SocialUser;
   loggedIn: boolean;
-  constructor(private fb: FormBuilder, private authService: AuthService, private httpClient: HttpClient) {}
+  username:String="";
+  bio:String="";
+  constructor(private us:UserService, private fb: FormBuilder, private authService: AuthService, private httpClient: HttpClient) {}
+
+  saveapi(val)
+  {
+    console.log(val);
+    this.username=val.username;
+    this.bio=val.bio;
+    var fd=new FormData();
+    fd.append("username",val.username);
+    fd.append("bio",val.bio);
+    this.us.demoapi(fd).subscribe((data)=>{
+      console.log(data);
+    });
+  }
 
   ngOnInit(): void {
     this.signinForm = this.fb.group({

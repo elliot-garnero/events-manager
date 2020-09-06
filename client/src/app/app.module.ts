@@ -18,6 +18,7 @@ import { Friend } from './app.component';
 import { WebSocketService } from './web-socket.service';
 import { ChatComponent } from './chat/chat.component';
 import { UsersComponent } from './users/users.component';
+import { UserService } from './user.service';
 
 const config = new AuthServiceConfig([
   {
@@ -49,6 +50,7 @@ export function provideConfig() {
     ReactiveFormsModule,
   ],
   providers: [
+    UserService,
     WebSocketService,
     {
       provide: AuthServiceConfig,
